@@ -9,7 +9,7 @@ const getState = ({ getStore, setStore }) => {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 			loadContact() {
-				fetch(url + "agenda/downtown_xii")
+				fetch(url + "agenda/rosheika_summer2021")
 					.then(response => response.json())
 					.then(result => {
 						console.log("Get Contact", result),
@@ -31,10 +31,10 @@ const getState = ({ getStore, setStore }) => {
 						phone: phone,
 						address: address,
 						email: email,
-						agenda_slug: "downtown_xii"
+						agenda_slug: "rosheika_summer2021"
 					})
 				}).then(() => {
-					fetch(url + "agenda/downtown_xii")
+					fetch(url + "agenda/rosheika_summer2021")
 						.then(response => response.json())
 						.then(result => {
 							console.log("result", result),
@@ -55,10 +55,10 @@ const getState = ({ getStore, setStore }) => {
 						phone: phone,
 						address: address,
 						email: email,
-						agenda_slug: "downtown_xii"
+						agenda_slug: "rosheika_summer2021"
 					})
 				}).then(() => {
-					fetch(url + "agenda/downtown_xii")
+					fetch(url + "agenda/rosheika_summer2021")
 						.then(response => response.json())
 						.then(result => {
 							console.log("result", result),
@@ -74,7 +74,7 @@ const getState = ({ getStore, setStore }) => {
 				fetch(url + id, {
 					method: "DELETE"
 				}).then(() => {
-					fetch(url + "agenda/downtown_xii")
+					fetch(url + "agenda/rosheika_summer2021")
 						.then(response => response.json())
 						.then(result => {
 							console.log("result", result),
