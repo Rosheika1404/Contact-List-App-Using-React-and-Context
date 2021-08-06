@@ -5,6 +5,6 @@ export const siginOut = async () => {
 		await firebase.auth().signOut();
 		console.log("logout");
 	} catch (e) {
-		throw new Error("error signing out");
+		throw new Error("Error signing out");
 	}
 };

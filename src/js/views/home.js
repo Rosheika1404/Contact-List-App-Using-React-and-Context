@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-import { signIn } from "../component/signIn";
+import { signIn } from "../component/signIn.js";
 
 export const Home = () => {
 	const history = useHistory();
@@ -12,7 +12,7 @@ export const Home = () => {
 	const onSignInClicked = async (email, password) => {
 		try {
 			await signIn(email, password);
-			history.push("/dashboard");
+			history.push("/Contacts");
 			console.log("success");
 		} catch (e) {
 			alert(e.message);

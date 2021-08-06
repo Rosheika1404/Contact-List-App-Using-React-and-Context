@@ -39,13 +39,12 @@ export const Modal = props => {
 								type="button"
 								className="cancel btn btn-primary"
 								data-dismiss="modal"
-								aria-label="Close">
+								aria-label="Cancel">
 								Oh no!
 							</button>
 						) : (
 							""
 						)}
-
 						<button
 							type="button"
 							className="btn btn-secondary"
