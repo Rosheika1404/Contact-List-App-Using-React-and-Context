@@ -3,6 +3,13 @@ const fetch = require('node-fetch')
 require('firebase/firestore')
 const url = "https://assets.breatheco.de/apis/fake/contact/";
 
+// const getContacts = ()=>{
+//     fetch(url+"agenda/rosheika_summer2021")
+//     .then((res)=>res.json())
+//     .then((response)=>contacts = response).then(()=>console.log(contacts))
+// }
+// getContacts()
+
 var firebaseConfig = {
 	apiKey: "AIzaSyDIQV8s86trzHADBLHRWLrP_Yqc5KrXl-4",
 	authDomain: "authentication-exercise-6b47a.firebaseapp.com",
@@ -17,6 +24,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore()
 
+//if you have existing database and need to pass to firebase
 const populateFirebase = (collectionName, items) => {
     return Promise.all(
         items && items.map((item) => {

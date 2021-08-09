@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 const url = "https://assets.breatheco.de/apis/fake/contact/";
 const getState = ({ getStore, setStore }) => {
 	return {
@@ -6,6 +7,21 @@ const getState = ({ getStore, setStore }) => {
 			contacts: []
 		},
 		actions: {
+			getContactFromFB: async () => {
+				try {
+					const getContacts = firebase.firestore().collection("contacts");
+					const response = await getContacts.get();
+
+					response.forEach(contact => {
+						setStore({
+							contactsFB: [...getStore().contactsFB, { ...contact.data(), id: contact.id }]
+						});
+					});
+					console.log("data from Firebase", getStore().contactsFB);
+				} catch (e) {
+					console.log(e);
+				}
+			},
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 			loadContact() {
@@ -33,17 +49,7 @@ const getState = ({ getStore, setStore }) => {
 						email: email,
 						agenda_slug: "rosheika_summer2021"
 					})
-				}).then(() => {
-					fetch(url + "agenda/rosheika_summer2021")
-						.then(response => response.json())
-						.then(result => {
-							console.log("result", result),
-								setStore({
-									contacts: result
-								});
-						})
-						.catch(e => console.error(e));
-				});
+				}).then(() => getStore().loadContact());
 			},
 
 			editContact(id, name, phone, email, address) {
@@ -57,33 +63,13 @@ const getState = ({ getStore, setStore }) => {
 						email: email,
 						agenda_slug: "rosheika_summer2021"
 					})
-				}).then(() => {
-					fetch(url + "agenda/rosheika_summer2021")
-						.then(response => response.json())
-						.then(result => {
-							console.log("result", result),
-								setStore({
-									contacts: result
-								});
-						})
-						.catch(e => console.error(e));
-				});
+				}).then(() => getStore().loadContact());
 			},
 
 			deleteContact(id) {
 				fetch(url + id, {
 					method: "DELETE"
-				}).then(() => {
-					fetch(url + "agenda/rosheika_summer2021")
-						.then(response => response.json())
-						.then(result => {
-							console.log("result", result),
-								setStore({
-									contacts: result
-								});
-						})
-						.catch(e => console.error(e));
-				});
+				}).then(() => getStore().loadContact());
 			}
 		}
 	};
