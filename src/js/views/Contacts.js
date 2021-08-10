@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ContactCard } from "../component/ContactCard.js";
 import { Context } from "../store/appContext.js";
 import { useHistory } from "react-router-dom";
-import { siginOut } from "../utilities/signOut";
+import { signOut } from "../utilities/signOut";
 
 export const Contacts = () => {
 	const [state, setState] = useState({
@@ -23,8 +23,8 @@ export const Contacts = () => {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						{store.contactsFB &&
-							store.contactsFB.map((e, index) => {
+						{store.contacts &&
+							store.contacts.map((e, index) => {
 								return <ContactCard key={index} e={e} onDelete={() => setState({ showModal: true })} />;
 							})}
 					</ul>

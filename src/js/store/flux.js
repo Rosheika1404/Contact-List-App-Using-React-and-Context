@@ -11,13 +11,15 @@ const getState = ({ getStore, setStore }) => {
 				try {
 					const getContacts = firebase.firestore().collection("contacts");
 					const response = await getContacts.get();
-
+					let aux = [];
 					response.forEach(contact => {
-						setStore({
-							contactsFB: [...getStore().contactsFB, { ...contact.data(), id: contact.id }]
-						});
+						aux.push({ ...contact.data(), id: contact.id });
+						// [...getStore().contactsFB, { ...contact.data(), id: contact.id }]
 					});
-					console.log("data from Firebase", getStore().contactsFB);
+					setStore({
+						contacts: aux
+					});
+					console.log("data from Firebase", getStore().contacts);
 				} catch (e) {
 					console.log(e);
 				}
